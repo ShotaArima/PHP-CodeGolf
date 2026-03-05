@@ -1,0 +1,15 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php-golf
+    working_dir: /work
+    volumes:
+      - ./:/work
+    tty: true
+    stdin_open: true
+    # コードゴルフ環境っぽく「実行時はネットワーク無し」
+    network_mode: none
+    # PhpStorm から docker exec で叩きやすいように常駐
+    command: ["sleep", "infinity"]
